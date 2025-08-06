@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool isValid(std::string s) {
+        std::stack<char> stk;
+        std::unordered_map<char, char> bracketMap = {
+            {')', '('},
+            {']', '['},
+            {'}', '{'}
+        };
+        
+        for (char ch : s) {
+            if (bracketMap.count(ch)) {
+                // Check for matching opening bracket
+                if (stk.empty() || stk.top() != bracketMap[ch]) {
+                    return false;
+                }
+                stk.pop();
+            } else {
+                stk.push(ch);
+            }
+        }
+        
+        return stk.empty();
+    }
+};
