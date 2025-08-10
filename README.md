@@ -1,5 +1,5 @@
 # Personal DSA Archive
 
-This repository is my personal archive for Data Structures and Algorithms practice.
+** Hey this repository is my personal archive for Data Structures and Algorithms practice.
 
-My process is simple: commit every time I solve a question. This helps me solidify my understanding of the core concepts and patterns, one problem at a time.
+** My process is simple: commit every time I solve a question. This helps me solidify my understanding of the core concepts and patterns, one problem at a time.
