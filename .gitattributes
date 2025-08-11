@@ -1,0 +1,18 @@
+# Mark README and docs so they don't count towards languages
+README.md linguist-documentation
+*.md linguist-documentation
+
+# Force detection for common DSA languages
+*.cpp linguist-language=C++
+*.java linguist-language=Java
+*.kt linguist-language=Kotlin
+*.py linguist-language=Python
+
+# If your code is in these folders, make sure they count
+archive/** -linguist-vendored -linguist-generated -linguist-documentation
+solutions/** -linguist-vendored -linguist-generated -linguist-documentation
+src/** -linguist-vendored -linguist-generated -linguist-documentation
+
+# Ignore plain text and data files from stats
+*.txt -linguist-detectable
+data/** -linguist-detectable
