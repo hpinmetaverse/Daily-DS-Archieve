@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int countNumbersWithUniqueDigits(int n) {
+       int ans=0;
+       for(int i=1;i<=n;i++){
+        int cnt=9,cal=9; 
+        int j=i;
+        while(--j){
+            cnt*=cal;
+            cal--;
+        }
+        ans+=cnt;
+       }
+       return ans+1;
+    }
+};
