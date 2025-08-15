@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isPowerOfFour(int n) {
+        if( n <= 0 ) return 0; // -ves and zero
+        bitset<31> b = n; // 31 cause : -2^31 <= n <= 2^31 - 1
+        int c = 0; // to count no of set bits
+        for( int i = 0; i<31; i++ ){
+            if( b[i] == 1 ){ // fount a set bit
+                c++;
+                if( c > 1 ) return 0; // more than one set bit
+                if( i%2 ) return 0; // set bit at odd index
+            } 
+        }
+        return 1;
+    }
+};
+
+// powers of 4 :                          position of the set bit
+// 1   = 000000000000000000000000000001   ind = 0
+// 4   = 000000000000000000000000000100   ind = 2
+// 16  = 000000000000000000000000010000   ind = 4
+// 64  = 000000000000000000000001000000   ind = 6 
+// 256 = 000000000000000000000100000000   ind = 8
+
+// PATTERN : the set bit is at even indices
+// obviously only one set bit should be there
