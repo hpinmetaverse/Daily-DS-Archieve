@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) {
+        int left = 0, right = nums.size() - 1;
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] > nums[mid + 1]) {
+                // We are in a decreasing slope → peak is on left (including mid)
+                right = mid;
+            } else {
+                // We are in an increasing slope → peak is on right
+                left = mid + 1;
+            }
+        }
+
+        // Left == Right → Peak found
+        return left;
+    }
+};
