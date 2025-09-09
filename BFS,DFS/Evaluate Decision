@@ -1,1 +1,37 @@
+class Solution {
+public:
+    unordered_map<string, unordered_map<string, double>> graph;
 
+    double DFS(string start, string end, unordered_set<string>& visited){
+        if(graph.find(start) == graph.end() || graph.find(end) == graph.end()) return -1.0;
+        if(start == end) return 1.0;
+
+        visited.insert(start);
+        for(auto& [neighbour, val]: graph[start]){
+            if(visited.count(neighbour)) continue; //if visited then skip
+            double ref = DFS(neighbour, end, visited); //going to find the next unvisieted graph that is connected with the neighbour to reach the end
+            if(ref != -1) return val * ref; // if theres no connected graph and we get -1 then we keep searching till we get or dont get then return -1
+// but if ref is a value then we multiple :)
+        }
+        return -1.0;
+    }
+
+    vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries) {
+        for(int i=0; i<equations.size(); i++){
+            string a = equations[i][0], b = equations[i][1];
+            double val = values[i];
+            graph[a][b] = val;
+            graph[b][a] = 1/val;
+        }
+
+        vector<double> ans;
+
+        for(int i=0; i<queries.size(); i++){
+            unordered_set<string> visited;
+            string start=queries[i][0], end=queries[i][1];
+            ans.push_back(DFS(start, end, visited));
+        }
+
+        return ans;
+    }
+};
