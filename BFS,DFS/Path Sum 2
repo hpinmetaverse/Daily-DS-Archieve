@@ -1,1 +1,22 @@
+class Solution {
+public:
+    void dfs(TreeNode *root, int targetSum, std::vector<int> &path, std::vector<std::vector<int>> &output) {
+        targetSum -= root->val;
+        path.push_back(root->val);
+        if (!targetSum && !root->left && !root->right) {
+            output.push_back(std::vector<int>(path.begin(), path.end()));
+            path.pop_back();
+            return;
+        }
+        if (root->left) dfs(root->left, targetSum, path, output);
+        if (root->right) dfs(root->right, targetSum, path, output);
+        path.pop_back();
+    }
 
+    vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
+        std::vector<std::vector<int>> output;
+        std::vector<int> path;
+        if (root) dfs(root, targetSum, path, output);
+        return output;
+    }
+};
